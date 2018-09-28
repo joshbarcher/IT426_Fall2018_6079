@@ -15,6 +15,7 @@ import javafx.util.Duration;
 public class StoryBook extends Application
 {
     public static final int WIN_SIZE = 300;
+    public static final int DELAY = 3000;
 
     private Stage stage;
     private String[] headers = {"Part #1", "Part #2", "Part #3"};
@@ -35,7 +36,7 @@ public class StoryBook extends Application
         stage.show();
 
         //wait a few seconds, to simulate load times, then display our story
-        KeyFrame frame = new KeyFrame(Duration.millis(3000),
+        KeyFrame frame = new KeyFrame(Duration.millis(DELAY),
                 event -> { stage.setScene(getStoryScreen(0)); });
         Timeline animation = new Timeline(frame);
         animation.play();
@@ -67,7 +68,7 @@ public class StoryBook extends Application
         {
             //send the user to the next screen if they click the button
             Button button = new Button("Next");
-            button.setOnAction(event -> { stage.setScene(getStoryScreen(index + 1)); });
+            button.setOnAction(event -> stage.setScene(getStoryScreen(index + 1)));
 
             return getSceneWithVBox(header, body, button);
         }
