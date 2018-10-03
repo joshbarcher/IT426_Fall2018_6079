@@ -11,11 +11,19 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * An example of placing elements in a GridPane
+ *
+ * @author Josh Archer
+ * @version 1.0
+ */
 public class GridPaneExample extends Application
 {
     public static final int NUM_COLS = 3;
     public static final int WIN_WIDTH = 500;
     public static final int WIN_HEIGHT = 500;
+    public static final int SPACING = 10;
+    public static final int COL_WIDTH = 80;
 
     @Override
     public void start(Stage stage)
@@ -30,16 +38,16 @@ public class GridPaneExample extends Application
         GridPane panel = new GridPane();
 
         //some style settings
-        panel.setHgap(10);
-        panel.setVgap(10);
+        panel.setHgap(SPACING);
+        panel.setVgap(SPACING);
         panel.setGridLinesVisible(true);
-        panel.setPadding(new Insets(10));
+        panel.setPadding(new Insets(SPACING));
 
         //define our columns or rows
         ObservableList<ColumnConstraints> columns = panel.getColumnConstraints();
         for (int i = 0; i < NUM_COLS; i++)
         {
-            columns.add(new ColumnConstraints(80));
+            columns.add(new ColumnConstraints(COL_WIDTH));
         }
 
         //add some checkboxes to the top row
