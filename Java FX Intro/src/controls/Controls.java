@@ -1,8 +1,6 @@
 package controls;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,11 +10,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+/**
+ * This class shows several types of Java FX controls.
+ *
+ * @author Josh Archer
+ * @version 1.0
+ */
 public class Controls extends Application
 {
 
     public static final int WIN_WIDTH = 500;
     public static final int WIN_HEIGHT = 600;
+    public static final int REGION_SIZE = 50;
 
     @Override
     public void start(Stage stage)
@@ -111,13 +116,11 @@ public class Controls extends Application
 
         //add a rectangle region that displays a color
         Rectangle colorRegion = new Rectangle();
-        colorRegion.setWidth(50);
-        colorRegion.setHeight(50);
+        colorRegion.setWidth(REGION_SIZE);
+        colorRegion.setHeight(REGION_SIZE);
         panel.getChildren().add(colorRegion);
 
-        colors.setOnAction(event -> {
-            colorRegion.setFill(colors.getValue());
-        });
+        colors.setOnAction(event -> colorRegion.setFill(colors.getValue()));
 
         return panel;
     }

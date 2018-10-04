@@ -12,6 +12,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.Arrays;
+
+/**
+ * This example shows how to switch scenes in Java FX.
+ *
+ * @author Josh Archer
+ * @version 1.0
+ */
 public class StoryBook extends Application
 {
     public static final int WIN_SIZE = 300;
@@ -37,12 +45,12 @@ public class StoryBook extends Application
 
         //wait a few seconds, to simulate load times, then display our story
         KeyFrame frame = new KeyFrame(Duration.millis(DELAY),
-                event -> { stage.setScene(getStoryScreen(0)); });
+                event -> stage.setScene(getStoryScreen(0)));
         Timeline animation = new Timeline(frame);
         animation.play();
     }
 
-    public Scene getWaitScreen()
+    private Scene getWaitScreen()
     {
         //show a progress indicator and a message
         ProgressIndicator progress = new ProgressIndicator();
@@ -51,7 +59,7 @@ public class StoryBook extends Application
         return getSceneWithVBox(progress, message);
     }
 
-    public Scene getSceneWithVBox(Node... elements)
+    private Scene getSceneWithVBox(Node... elements)
     {
         VBox panel = new VBox();
         panel.getChildren().addAll(elements);
@@ -59,7 +67,7 @@ public class StoryBook extends Application
         return new Scene(panel, WIN_SIZE, WIN_SIZE);
     }
 
-    public Scene getStoryScreen(int index)
+    private Scene getStoryScreen(int index)
     {
         Text header = new Text(headers[index]);
         Text body = new Text(bodies[index]);
@@ -74,5 +82,15 @@ public class StoryBook extends Application
         }
 
         return getSceneWithVBox(header, body);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "StoryBook{" +
+                "stage=" + stage +
+                ", headers=" + Arrays.toString(headers) +
+                ", bodies=" + Arrays.toString(bodies) +
+                '}';
     }
 }
