@@ -12,7 +12,9 @@ public class DBData implements IColorsData
 {
     private Connection conn;
 
-    public DBData()
+    private static DBData instance;
+
+    private DBData()
     {
         try
         {
@@ -26,6 +28,15 @@ public class DBData implements IColorsData
             //rethrow our exception if we cannot connect
             throw new IllegalStateException("Cannot connect to model.db: " + e.getMessage());
         }
+    }
+
+    public static DBData getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new DBData();
+        }
+        return instance;
     }
 
     @Override
