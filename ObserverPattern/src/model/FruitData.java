@@ -22,7 +22,7 @@ public class FruitData extends Observable
         fruits.add(fruit);
 
         //let others know something change
-        notifyObservers(Change.ADD);
+        notifyObservers(Change.ADD, fruit);
     }
 
     public void removeFruit(UUID id)
@@ -44,7 +44,7 @@ public class FruitData extends Observable
         }
     }
 
-    public List getFruits()
+    public List<Fruit> getFruits()
     {
         return Collections.unmodifiableList(fruits);
     }
