@@ -8,7 +8,8 @@ public class BasketballPlayer
     private String team;
     private String stats;
 
-    public BasketballPlayer(String lName, String fName, char middleInitial, String team)
+    public BasketballPlayer(String lName, String fName, char middleInitial,
+                            String team)
     {
         this.lName = lName;
         this.fName = fName;
@@ -22,7 +23,7 @@ public class BasketballPlayer
     {
         if (!stats.isEmpty())
         {
-            stats += ", ";
+            stats += ",";
         }
         stats += stat + ": " + value;
     }
