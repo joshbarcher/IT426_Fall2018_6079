@@ -1,8 +1,6 @@
 package program;
 
-import commands.AddLetterSpacingCommand;
-import commands.ICommand;
-import commands.WordPerLineCommand;
+import commands.*;
 import entities.Message;
 
 import java.util.Arrays;
@@ -11,6 +9,30 @@ import java.util.List;
 public class RunProgram
 {
     public static void main(String[] args)
+    {
+        Message message = new Message("Bill Gates",
+                "Windows is going to change the world");
+
+        ICommand composite = new CompositeCommand(
+                new WordPerLineCommand(message),
+                new AddLetterSpacingCommand(message)
+        );
+        ICommand shout = new ShoutingCommand(message);
+        ICommand allCommands = new CompositeCommand(composite, shout);
+
+        //group together our commands in a data structure
+        System.out.println("Before: " + message.toString());
+        allCommands.doCommand();
+        System.out.println("After: " + message.toString());
+
+        //undo all commands
+        /*composite.undoCommand();
+        System.out.println("After undo: " + message.toString());
+        composite.doCommand();
+        System.out.println("After redo: " + message.toString());*/
+    }
+
+    private static void testCommand()
     {
         Message message = new Message("Bill Gates",
                 "Windows is going to change the world");
