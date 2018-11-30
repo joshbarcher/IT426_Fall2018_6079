@@ -39,4 +39,28 @@ public class Message
                 ", messageBody='" + messageBody + '\'' +
                 '}';
     }
+
+    //support mementos
+    public Memento getMemento()
+    {
+        return new Memento(author, messageBody);
+    }
+
+    public void setMemento(Memento memento)
+    {
+        this.author = memento.author;
+        this.messageBody = memento.messageBody;
+    }
+
+    public class Memento
+    {
+        private String author;
+        private String messageBody;
+
+        private Memento(String author, String messageBody)
+        {
+            this.author = author;
+            this.messageBody = messageBody;
+        }
+    }
 }

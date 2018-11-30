@@ -5,10 +5,33 @@ import entities.Message;
 
 import java.util.Arrays;
 import java.util.List;
+import entities.Message.Memento;
 
 public class RunProgram
 {
     public static void main(String[] args)
+    {
+        Message message = new Message("Bill Gates",
+                "Windows is going to change the world");
+
+        ICommand composite = new CompositeCommand(
+                new WordPerLineCommand(message),
+                new AddLetterSpacingCommand(message)
+        );
+
+        //save a snapshot of my message
+        Memento snapshot = message.getMemento();
+
+        //make some changes
+        composite.doCommand();
+        System.out.println("After commands execute: " + message.toString());
+
+        //rollback if necessary
+        message.setMemento(snapshot);
+        System.out.println("After rollback: " + message.toString());
+    }
+
+    private static void testCompositeCommands()
     {
         Message message = new Message("Bill Gates",
                 "Windows is going to change the world");
